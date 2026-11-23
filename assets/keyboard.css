@@ -1,0 +1,88 @@
+/* V3.4 — teclado especial de capas SOMENTE no celular; PC preservado. */
+.kn-virtual-keyboard[hidden],.kn-open-keyboard[hidden]{display:none!important}
+.live-edit-label{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.live-edit-label>span{grid-column:1/-1}
+.live-edit-label textarea{grid-column:1;min-width:0;min-height:42px;max-height:74px;height:42px;resize:none;overflow-y:auto;letter-spacing:.01em;caret-color:#f1cf75;font-size:16px;background:#0a2229;border-color:#65aa9f;color:#fffaf0;padding:8px 10px;border-radius:8px;line-height:1.25}
+.live-edit-label .kn-open-keyboard{grid-column:2;min-height:40px;padding:7px 10px;background:#a9365d;border:1px solid #f2a6bc;color:#fff;white-space:nowrap}
+.kn-virtual-keyboard{z-index:1000;position:fixed;bottom:0;left:0;width:100%;background:#101e31;color:#f3f4fa;border:1px solid #db7797;border-radius:16px 16px 0 0;padding:7px 7px max(6px,env(safe-area-inset-bottom,0px));box-shadow:0 -13px 45px #000a;display:flex;flex-direction:column;gap:5px;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.kn-kbd-head{display:flex;align-items:center;justify-content:space-between;gap:5px;min-height:29px}
+.kn-kbd-head strong{font-size:11px;color:#f7b1c6;white-space:nowrap}
+.kn-kbd-head>div{display:flex;gap:5px}
+.kn-virtual-keyboard button{min-width:0;color:#fbf9fd;background:#29445e;border:1px solid #506988;border-radius:8px;font-size:14px;font-weight:650;min-height:34px;padding:2px 4px;touch-action:manipulation;line-height:1.15}
+.kn-virtual-keyboard button:active{background:#ab4766}
+.kn-virtual-keyboard .kn-kbd-done{background:#a9365d;color:white;border-color:#e997b0}
+.kn-virtual-keyboard .kn-kbd-autocorrect{font-size:10px;padding:4px 8px;min-height:26px}
+.kn-virtual-keyboard .kn-kbd-autocorrect[aria-pressed="true"]{background:#235d4f;border-color:#61a78f}
+.kn-kbd-suggest{display:flex;gap:5px;height:30px;min-height:30px}
+.kn-kbd-suggest button{background:#233a52;flex:1 1 0;font-size:12px;min-height:28px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kn-kbd-suggest button:disabled{opacity:.35}
+.kn-kbd-accents{display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;flex:0 0 auto}
+.kn-kbd-accents button{font-size:13px;min-width:27px;padding:3px;min-height:25px;flex:none;background:#263f50}
+.kn-kbd-row{display:flex;justify-content:center;gap:4px;width:100%;flex:1 1 auto;min-height:31px}
+.kn-kbd-row button{flex:1 1 0;max-width:9%;font-size:15px;min-height:32px}
+.kn-kbd-row:last-child button{font-size:12px}
+.kn-kbd-row .kn-kbd-space{flex:4 1 auto;max-width:none;background:#314964}
+.kn-kbd-row .kn-kbd-special{flex:1.5 1 auto;max-width:none;background:#3f4965}
+.kn-kbd-special.kn-kbd-backspace{background:#783a51}
+.kn-kbd-symbols{font-size:12px}
+body.kn-kb-open .toast{z-index:1002}
+body.kn-kb-open .kn-open-keyboard{display:none!important}
+body.kn-kb-open .preview-sticky{z-index:10}
+@media (pointer:coarse) and (max-width:1150px){
+ .kn-virtual-keyboard{max-height:48dvh;overflow:auto;overscroll-behavior:contain}
+ .kn-open-keyboard:not([hidden]){display:block}
+ body.kn-kb-open:not(.kn-landscape-on) .shell{padding-bottom:320px}
+ body.kn-kb-open:not(.kn-landscape-on) .preview-sticky{position:sticky;top:2px;background:#102934}
+ body.kn-kb-open:not(.kn-landscape-on) .cover-preview{max-height:clamp(100px,28dvh,210px)}
+ body.kn-kb-open:not(.kn-landscape-on) .cover-preview canvas{max-height:clamp(95px,26dvh,200px)}
+ body.kn-kb-open:not(.kn-landscape-on) .preview-hint,body.kn-kb-open:not(.kn-landscape-on) .preview-actions,body.kn-kb-open:not(.kn-landscape-on) .selection-status{display:none}
+ .kn-kbd-row{min-height:32px}
+}
+/* Em paisagem o teclado ocupa APENAS o painel direito de ferramentas. A prévia à esquerda continua inteira e visível. */
+@media (orientation:landscape) and (pointer:coarse) and (max-height:680px) and (min-width:580px){
+ body.kn-kb-open.kn-landscape-on .kn-virtual-keyboard{position:fixed;top:var(--kn-kb-top,48px);left:var(--kn-kb-left,60%);width:var(--kn-kb-width,38%);height:calc(100dvh - var(--kn-kb-top,48px) - 5px);max-height:none;border-radius:10px;padding:5px 5px 7px;gap:3px;z-index:45;overflow-y:auto}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-head{min-height:24px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-suggest{height:24px;min-height:24px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-suggest button{min-height:24px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-accents button{min-height:22px;font-size:12px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-row{min-height:27px;flex:1 1 auto;gap:2px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-row button{min-height:25px;padding:2px 1px;font-size:13px}
+ body.kn-kb-open.kn-landscape-on .kn-kbd-row:last-child button{font-size:10px}
+ body.kn-kb-open.kn-landscape-on .kn-open-keyboard{min-height:29px;padding:2px 4px;font-size:10px}
+ body.kn-kb-open.kn-landscape-on .live-edit-label textarea{min-height:32px;height:32px;padding:4px 6px}
+}
+
+/* V3.5: teclado aplicado a todos os campos textuais, com visor do conteúdo digitado. */
+.kn-kbd-feedback{font-size:11px;line-height:1.2;min-height:20px;max-height:42px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #3f756e;border-radius:6px;padding:3px 7px;color:#fff7df;background:#103139}
+@media (orientation:landscape) and (pointer:coarse) and (max-height:680px) and (min-width:580px){.kn-kbd-feedback{min-height:18px;max-height:34px;font-size:10px;padding:2px 5px}}
+
+/* V3.6 — três botões clicáveis de biblioteca e um painel compacto, exclusivo do celular. */
+.kn-kbd-suggest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;height:auto;min-height:32px}
+.kn-kbd-suggest button{background:#285d59;border:1px solid #83bea8;font-size:12px;min-height:30px;color:#fef2d3}
+.kn-kbd-suggest button[aria-pressed="true"]{background:#a44965;border-color:#ffd0d8}
+.kn-kbd-word-suggest{display:flex;gap:4px;min-height:0}
+.kn-kbd-word-suggest:empty{display:none}
+.kn-kbd-word-suggest button{flex:1 1 0;min-width:0;min-height:23px;padding:2px 4px;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#243c4d}
+.kn-kbd-word-suggest button:disabled{opacity:.25}
+.kn-kbd-drawer[hidden]{display:none!important}
+.kn-kbd-drawer{overflow:auto;min-height:0;flex:1 1 0;display:flex;flex-direction:column;gap:5px;border:1px solid #50756e;border-radius:8px;background:#101f2b;padding:6px;overscroll-behavior:contain}
+.kn-kbd-drawer-header{display:flex;justify-content:space-between;align-items:center;gap:5px}
+.kn-kbd-drawer-header strong{font-size:12px;color:#f5d88d}
+.kn-kbd-drawer-header button{font-size:11px;min-height:26px;background:#2d5c59}
+.kn-kbd-categories{display:flex;gap:4px;overflow-x:auto;flex:0 0 auto;padding-bottom:3px}
+.kn-kbd-categories button{white-space:nowrap;min-height:28px;flex:none;font-size:11px;padding:3px 7px;background:#234b53}
+.kn-kbd-categories button.active{background:#a04461;border-color:#f7b5ca}
+.kn-kbd-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;overflow-y:auto;min-height:0;align-content:start;flex:1 1 auto}
+.kn-kbd-shortcut{min-width:0;display:flex;flex-direction:column;gap:3px;background:#182c3a;border:1px solid #456b6b;border-radius:8px;padding:3px}
+.kn-kbd-shortcut .kn-kbd-item{font-size:11px;min-width:0;line-height:1.2;height:auto;min-height:34px;white-space:normal;overflow-wrap:anywhere}
+.kn-kbd-shortcut .kn-kbd-to-cover{background:#4e3860;color:#ffe9fa;min-height:24px;font-size:10px}
+.kn-kbd-profile{grid-column:1/-1;font-size:11px!important;min-height:30px!important}
+.kn-kbd-drawer-open .kn-kbd-feedback{max-height:38px}
+.kn-kbd-keys[hidden],.kn-kbd-accents[hidden],.kn-kbd-word-suggest[hidden]{display:none!important}
+@media (orientation:landscape) and (pointer:coarse) and (max-height:680px) and (min-width:580px){
+ .kn-kbd-suggest button{font-size:9px;min-height:26px}
+ .kn-kbd-drawer{padding:3px;gap:3px}
+ .kn-kbd-categories button{font-size:9px;min-height:23px}
+ .kn-kbd-shortcut .kn-kbd-item{font-size:9px;min-height:28px}
+ .kn-kbd-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
